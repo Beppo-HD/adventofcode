@@ -1,4 +1,4 @@
-# My Solutions to the advent of coding.
+# My solutions to the advent of coding.
 Each year will be in a different language to challenge myself.
 
 ## Planned languages (Can change until i start them):
