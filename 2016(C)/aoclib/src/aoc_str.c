@@ -29,6 +29,12 @@ bool str_ends_with(const char *s, const char *suffix) {
     return strcmp(s + (ls - lf), suffix) == 0;
 }
 
+size_t str_count_char(const char *s, char c) {
+    size_t n = 0;
+    for (; *s; s++) if (*s == c) n++;
+    return n;
+}
+
 bool str_contains(const char *s, const char *sub) {
     return strstr(s, sub) != nullptr;
 }
@@ -98,4 +104,54 @@ long *str_extract_ints(const char *s, size_t *out_count) {
     }
     *out_count = n;
     return out;
+}
+
+char rotate_letter(char c, int n) {
+    if (c >= 'a' && c <= 'z') return (char)('a' + aoc_mod(c - 'a' + n, 26));
+    if (c >= 'A' && c <= 'Z') return (char)('A' + aoc_mod(c - 'A' + n, 26));
+    return c;
+}
+
+char *str_rotate(const char *s, int n) {
+    size_t len = strlen(s);
+    char *out = malloc(len + 1);
+    for (size_t i = 0; i < len; i++) out[i] = rotate_letter(s[i], n);
+    out[len] = '\0';
+    return out;
+}
+
+void sb_init(StrBuilder *sb) {
+    sb->cap = 32;
+    sb->len = 0;
+    sb->data = malloc(sb->cap);
+    sb->data[0] = '\0';
+}
+
+void sb_free(StrBuilder *sb) {
+    free(sb->data);
+    sb->data = nullptr;
+    sb->len = sb->cap = 0;
+}
+
+static void sb_ensure(StrBuilder *sb, size_t extra) {
+    if (sb->len + extra + 1 <= sb->cap) return;
+    size_t new_cap = sb->cap * 2;
+    while (new_cap < sb->len + extra + 1) new_cap *= 2;
+    sb->data = realloc(sb->data, new_cap);
+    sb->cap = new_cap;
+}
+
+void sb_append_n(StrBuilder *sb, const char *s, size_t n) {
+    sb_ensure(sb, n);
+    memcpy(sb->data + sb->len, s, n);
+    sb->len += n;
+    sb->data[sb->len] = '\0';
+}
+
+void sb_append(StrBuilder *sb, const char *s) {
+    sb_append_n(sb, s, strlen(s));
+}
+
+const char *sb_cstr(const StrBuilder *sb) {
+    return sb->data;
 }
