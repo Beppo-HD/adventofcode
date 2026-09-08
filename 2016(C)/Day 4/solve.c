@@ -30,7 +30,7 @@ int compare_by_count_desc(const void *a, const void *b){
 }
 
 int main(void) {
-    Lines l = read_lines("4.txt");
+    Lines l = read_lines("input.txt");
     VecLong valid_room_IDs;
     veclong_init(&valid_room_IDs);
     VecStr valid_room_names;

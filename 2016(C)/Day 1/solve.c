@@ -8,7 +8,7 @@
 #include <stdlib.h>
 
 int main(void) {
-    Lines l = read_lines("1.txt");
+    Lines l = read_lines("input.txt");
     size_t part_count;
     char **parts = str_split(l.lines[0], ", ", &part_count);
 

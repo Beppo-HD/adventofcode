@@ -15,7 +15,7 @@ int check_list(int *n, size_t len){
 }
 
 int main(void) {
-    Lines l = read_lines("3.txt");
+    Lines l = read_lines("input.txt");
 
     int *all_numbers = malloc(sizeof(int) * l.count * 3);
     for(size_t i = 0; i < l.count; i++){

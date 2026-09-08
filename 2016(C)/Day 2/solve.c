@@ -76,7 +76,7 @@ void follow_steps(Lines *l, int *cur_x, int *cur_y, char *code, bool strange){
 }
 
 int main(void) {
-    Lines l = read_lines("2.txt");
+    Lines l = read_lines("input.txt");
 
     int cur_x = 1, cur_y = 1;
     char *code = malloc(sizeof(char) * l.count);
