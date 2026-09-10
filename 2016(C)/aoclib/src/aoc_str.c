@@ -148,6 +148,12 @@ void sb_append_n(StrBuilder *sb, const char *s, size_t n) {
     sb->data[sb->len] = '\0';
 }
 
+void sb_append_char(StrBuilder *sb, char c) {
+    sb_ensure(sb, 1);
+    sb->data[sb->len++] = c;
+    sb->data[sb->len] = '\0';
+}
+
 void sb_append(StrBuilder *sb, const char *s) {
     sb_append_n(sb, s, strlen(s));
 }

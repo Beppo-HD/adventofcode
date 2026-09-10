@@ -36,6 +36,8 @@ typedef struct {
 void  sb_init(StrBuilder *sb);
 void  sb_free(StrBuilder *sb);
 void  sb_append(StrBuilder *sb, const char *s);
+void  sb_append_char(StrBuilder *sb, char c);
+void  sb_append_n(StrBuilder *sb, const char *s, size_t n);
 /* Returns the built string. Still owned by sb until sb_free(); copy if needed. */
 const char *sb_cstr(const StrBuilder *sb);
 
