@@ -1,7 +1,8 @@
-# My solutions to the advent of code.
+# My solutions to Advent of Code
+
 Each year will be in a different language to challenge myself.
 
-## Planned languages (Can change until i start them):
+## Planned languages (can change until I start them)
 | Year | Language |
 |------|----------|
 | 2015 | Python |
