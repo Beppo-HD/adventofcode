@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
+#include <stdio.h>
 
 char *aoc_strdup(const char *s) {
     size_t n = strlen(s) + 1;
@@ -148,10 +149,77 @@ void sb_append_n(StrBuilder *sb, const char *s, size_t n) {
     sb->data[sb->len] = '\0';
 }
 
+void sb_append_char(StrBuilder *sb, char c) {
+    sb_ensure(sb, 1);
+    sb->data[sb->len++] = c;
+    sb->data[sb->len] = '\0';
+}
+
 void sb_append(StrBuilder *sb, const char *s) {
     sb_append_n(sb, s, strlen(s));
 }
 
 const char *sb_cstr(const StrBuilder *sb) {
     return sb->data;
+}
+
+char *int_to_string(int x) {
+    char buf[16];
+    snprintf(buf, sizeof(buf), "%d", x);
+    return aoc_strdup(buf);
+}
+
+char *uint_to_string(unsigned int x) {
+    char buf[16];
+    snprintf(buf, sizeof(buf), "%u", x);
+    return aoc_strdup(buf);
+}
+
+char *long_to_string(long x) {
+    char buf[24];
+    snprintf(buf, sizeof(buf), "%ld", x);
+    return aoc_strdup(buf);
+}
+
+char *ulong_to_string(unsigned long x) {
+    char buf[24];
+    snprintf(buf, sizeof(buf), "%lu", x);
+    return aoc_strdup(buf);
+}
+
+char *longlong_to_string(long long x) {
+    char buf[24];
+    snprintf(buf, sizeof(buf), "%lld", x);
+    return aoc_strdup(buf);
+}
+
+char *ulonglong_to_string(unsigned long long x) {
+    char buf[24];
+    snprintf(buf, sizeof(buf), "%llu", x);
+    return aoc_strdup(buf);
+}
+
+char *double_to_string(double x) {
+    char buf[32];
+    snprintf(buf, sizeof(buf), "%g", x);
+    return aoc_strdup(buf);
+}
+
+char *float_to_string(float x) {
+    char buf[32];
+    snprintf(buf, sizeof(buf), "%g", (double)x);
+    return aoc_strdup(buf);
+}
+
+char *char_to_string(char c) {
+    char buf[2] = { c, '\0' };
+    return aoc_strdup(buf);
+}
+
+char *bool_to_string(bool b) {
+    return aoc_strdup(b ? "true" : "false");
+}
+
+char *cstr_to_string(const char *s) {
+    return aoc_strdup(s);
 }
